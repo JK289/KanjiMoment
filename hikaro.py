@@ -1,4 +1,5 @@
 vowel_list = ['a', 'i', 'u', 'e', 'o']
+
 consonant_list = ['k', 's', 't', 'n', 'h',
                   'm', 'y', 'r', 'w', 'n',
                   'g', 'z', 'd', 'b', 'p',
@@ -105,6 +106,7 @@ def split_romaji(rom_word):
     word = ''
     i = 0
     rom_word = rom_word + '   '
+    
     while rom_word[i] != ' ':
         if rom_word[i] + rom_word[i + 1] + rom_word[i + 2] in romaji_list:
             word = word + rom_word[i] + rom_word[i + 1] + rom_word[i + 2] + ' '
@@ -115,19 +117,18 @@ def split_romaji(rom_word):
         elif rom_word[i] in romaji_list:
             word = word + rom_word[i] + ' '
             i = i + 1
-
     word = word.strip()
+    
     return word
 
 
 def hr(hir_word):
-
     rom = ''
     i = 0
     hir_word = hir_word + ' '
+    
     while hir_word[i] != ' ':
-
-        if hir_word[i] + hir_word[i + 1] in hiragana_list:
+        if hir_word[i] + hir_word[i + 1] in hiragana_list:  # yoon (digraphs: ぎょ) detection 
             yoon = hir_word[i] + hir_word[i + 1]
             rom = rom + romaji_list[hiragana_list.index(yoon)]
             i = i + 2
@@ -147,13 +148,12 @@ def hr(hir_word):
 
 
 def kr(kat_word):
-
     rom = ''
     i = 0
     kat_word = kat_word + ' '
 
     while kat_word[i] != ' ':
-        if kat_word[i] + kat_word[i + 1] in katakana_list:
+        if kat_word[i] + kat_word[i + 1] in katakana_list:  # yoon (digraphs: ニュ) detection 
             yoon = kat_word[i] + kat_word[i + 1]
             rom = rom + romaji_list[katakana_list.index(yoon)]
             i = i + 2
@@ -173,7 +173,6 @@ def kr(kat_word):
 
 
 def rh(rom_word):
-
     rom_word = split_romaji(rom_word)
     hir = ''
     i = 0
@@ -198,7 +197,6 @@ def rh(rom_word):
 
 
 def rk(rom_word):
-
     rom_word = split_romaji(rom_word)
     kat = ''
     i = 0
@@ -232,7 +230,6 @@ def kh(kat_word):
 
 
 def tte(stce, from_script, to_script):
-
     from_script = from_script.lower()
     to_script = to_script.lower()
     stce = stce.split()
@@ -258,16 +255,3 @@ def tte(stce, from_script, to_script):
             tstce = tstce + kh(word) + ' '
 
     return tstce
-
-
-print(tte('kimu djongyo', 'romaji', 'hiragana'))
-print(tte('mirucha sudji pura', 'romaji', 'katakana'))
-print(tte('ウクライナ', 'katakana', 'hiragana'))
-print(tte('ルーマニア', 'katakana', 'romaji'))
-print(tte('ありがとう ございます', 'hiragana', 'romaji'))
-print(tte('ごめんな さい', 'hiragana', 'romaji'))
-
-
-
-
-
