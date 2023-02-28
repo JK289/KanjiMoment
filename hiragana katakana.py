@@ -86,7 +86,7 @@ def hir_rom(hir_word):
     for hir in hir_word:
         i = i + 1
         if hir == 'ウ' and hir_word[i - 1] in ['こ', 'そ', 'と', 'の', 'ほ', 'も', 'ろ', 'ご', 'ぞ', 'ど', 'ぼ', 'ぽ']:
-            rom = rom + 'o'  # double o instead of ou like "arigatoo"
+            rom = rom + 'o'  # double o instead of ou like "arigatoo" instead of "arigatou"
         else:
             if hir == 'っ':  # double next consonant when small tsu っ "otto"
                 next_mora = romaji_list[hiragana_list.index(hir_word[i + 1])]
